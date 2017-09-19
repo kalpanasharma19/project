@@ -10,14 +10,7 @@
     <p> Phone Number:</br> <%= f.text_field :phone_number%> </p>
     <%= f.submit :Update %>
   <% end %>
-
-  <% if @customer.errors.any? %>
-    <ul class="Edit_Errors">
-    <% for message_error in @customer.errors.full_messages %>
-      <li>* <%= message_error %></li>
-    <% end %>
-    </ul>
-  <% end %></center>
 </div></font>
+ <%= render 'shared/errors', object: @customer %></center>
 
 <center><%= link_to 'Back', customer_path(current_customer.id) %></center>

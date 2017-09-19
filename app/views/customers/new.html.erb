@@ -1,5 +1,4 @@
 <font size ="4">
-
 <p align=right>
   <%= link_to 'Home', welcome_index_path %>
 </p>
@@ -15,13 +14,6 @@
     <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
     <%= f.submit :Signup %>
   <% end %>
-
-  <% if @customer.errors.any? %>
-    <ul class="Signup_Errors">
-    <% for message_error in @customer.errors.full_messages %>
-      <li>* <%= message_error %></li>
-    <% end %>
-    </ul>
-  <% end %></center>
+  <%= render 'shared/errors', object: @customer %></center>
 </div>
 </font>

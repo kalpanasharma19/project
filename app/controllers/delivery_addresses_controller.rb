@@ -3,7 +3,11 @@ class DeliveryAddressesController < ApplicationController
 
   def create
     @delivery_address = current_customer.delivery_addresses.create(delivery_address_params)
-    redirect_to customer_path(current_customer)
+    if @delivery_address
+      redirect_to customer_path(current_customer)
+    else
+       @delivery_address.errors.full_messages
+    end
   end
 
   def destroy
@@ -13,7 +17,6 @@ class DeliveryAddressesController < ApplicationController
   end
 
   private
-
   def delivery_address_params
     params.require(:delivery_address).permit(:name, :address, :phone_number)
   end

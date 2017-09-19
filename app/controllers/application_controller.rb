@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_customer
   protect_from_forgery with: :exception
-  include CustomersHelper
   helper_method :is_admin?, :current_customer
 
   def current_customer

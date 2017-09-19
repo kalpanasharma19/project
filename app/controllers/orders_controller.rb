@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @delivery_address = current_customer.delivery_addresses.find_by(id: params[:delivery_address_id])
   end
 
   def create

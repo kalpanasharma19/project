@@ -18,28 +18,29 @@ class ShoppingCartItemsController < ApplicationController
     end
 
     if @shopping_cart_item.save
-      redirect_to shopping_cart_items_show_path
+      flash[:success] = "Product added to cart."
+      redirect_to products_path
     else
-      render 'new'
+      flash[:alert] = "Error while adding"
     end
   end
 
   def add_quantity
     shopping_cart_item.increment(:quantity)
     shopping_cart_item.save
-    redirect_to shopping_cart_items_show_path
+    render 'show'
   end
 
   def reduce_quantity
     shopping_cart_item.decrement(:quantity) if shopping_cart_item.quantity > 1
     shopping_cart_item.save
-    redirect_to shopping_cart_items_show_path
+    render 'show'
   end
 
   def destroy
     @item = current_customer.shopping_cart_items.find_by(id: params[:id])
     @item.destroy
-    redirect_to shopping_cart_items_show_path
+    render 'show'
   end
 
   private

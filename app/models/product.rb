@@ -8,6 +8,6 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
 
-  validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] },
+  validates_attachment :image, presence: true, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] },
                                size: { in: 0..500.kilobytes }
 end
