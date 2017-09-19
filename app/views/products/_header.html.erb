@@ -1,0 +1,15 @@
+<body bgcolor="#99CCCC" text="#000000" vlink="#0066FF">
+<p align= right>
+  <% if current_customer %>
+    <font size= "5" color ="#006600">Hello <%=current_customer.name %>!!</font>
+    <%= link_to 'Your Details', customer_path(current_customer)%>
+    <%= link_to 'Cart', shopping_cart_items_show_path%>
+    <%= link_to 'Orders', orders_show_path %>
+  <% end %>
+
+  <%= link_to 'Home', welcome_index_path %>
+  <%= link_to 'Logout', session_path(session[:customer_id]),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } if current_customer%>
+</p>
+<HR SIZE="7" WIDTH="100%" color="#CC6699">

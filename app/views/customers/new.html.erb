@@ -1,0 +1,27 @@
+<font size ="4">
+
+<p align=right>
+  <%= link_to 'Home', welcome_index_path %>
+</p>
+<body bgcolor="#99CCCC" text="#003399" vlink="#0066FF">
+
+<div class="Sign_Form">
+  <center><h1>Sign Up</h1>
+  <%= form_for(:customer, :url => {:controller => 'customers', :action => 'create'}) do |f| %>
+    <p> Username:</br> <%= f.text_field :name%> </p>
+    <p> Email:</br> <%= f.text_field :email%> </p>
+    <p> Phone Number:</br> <%= f.text_field :phone_number%> </p>
+    <p> Password:</br> <%= f.password_field :password%></p>
+    <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
+    <%= f.submit :Signup %>
+  <% end %>
+
+  <% if @customer.errors.any? %>
+    <ul class="Signup_Errors">
+    <% for message_error in @customer.errors.full_messages %>
+      <li>* <%= message_error %></li>
+    <% end %>
+    </ul>
+  <% end %></center>
+</div>
+</font>

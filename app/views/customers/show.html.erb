@@ -1,0 +1,28 @@
+<%= render 'products/header' %>
+
+<p>
+  <strong>Customer Name:</strong>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= @customer.phone_number %>
+</p>
+
+<h4>Delivery Addresses:</h4>
+<%= render @customer.delivery_addresses %>
+
+<% if @customer == current_customer %>
+  <h4> Add a delivery address: </h4>
+  <%= render 'delivery_addresses/form' %>
+  <%= link_to 'Edit Your Details', edit_customer_path(@customer) %>
+<% end %>
+<p><%= link_to 'Back', customers_path if is_admin? %></p>
+<%= link_to 'Back to Product List', products_path %>
+

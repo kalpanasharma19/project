@@ -1,0 +1,36 @@
+<%= render 'products/header' %>
+
+<h2>List of Customers</h2>
+
+<style>
+  table,th {text-align: left;}
+
+  th { background-color: black; color: white; }
+
+</style>
+
+<table style= "width:50%" >
+  <tr>
+    <th>Name</th>
+
+    <th>Phone Number</th>
+  </tr>
+
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+
+      <td><%= customer.phone_number %></td>
+
+      <td><%= link_to 'Show-details', customer_path(customer) %></td>
+      <td>
+        <%= link_to 'Edit', edit_customer_path(customer) if customer == current_customer %>
+      </td>
+      <td><%= link_to 'Destroy', customer_path(customer),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } if customer == current_customer %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Go to Products Details', products_path if is_admin?%>

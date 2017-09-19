@@ -1,0 +1,17 @@
+<font size ="6"><p align=right>
+  <%= link_to 'Home', welcome_index_path %></p>
+<body bgcolor="#99CCCC" text="#003399" vlink="#0066FF">
+
+
+<% @page_title = "UserAuth | Login" -%>
+<div class= "Sign_Form">
+  <center><h1>Log in</h1>
+  <%= form_tag(:action => 'create') do %>
+    <p>Username:</br> <%= text_field_tag(:username) %></p>
+    <p>Password:</br> <%= password_field_tag :login_password %></p>
+    <p><%= submit_tag("Log In") %></p>
+  <% end %>
+
+  <h6> First Time Visitor?...Please SignUp First</h6>
+  <%= link_to 'SignUp', new_customer_path %></center>
+</div></font>

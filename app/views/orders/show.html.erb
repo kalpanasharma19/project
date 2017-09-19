@@ -1,0 +1,45 @@
+<%= render 'products/header' %>
+<h2>Total Orders : <%= current_customer.orders.count %></h2>
+<style>
+table, th, td {text-align: left; border: 1px solid black;}
+th { background-color: black; color: white; }
+</style>
+
+<% if current_customer.orders.any? %>
+  <% current_customer.orders.each do |order| %>
+    <% total = 0 %>
+
+    <table style= "width:70%" >
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total Price</th>
+      </tr>
+      <% order.order_items.each do |order_item| %>
+        <tr>
+          <td><%= order_item.product.name %></td>
+          <td><%= order_item.quantity%></td>
+          <td><%= order_item.price %></td>
+          <td><%= total_price = order_item.quantity * order_item.price %></td>
+          <% total += total_price %>
+        </tr>
+      <% end %>
+    </table>
+
+    <p><strong>Total amount: </strong><%= total %></p>
+    <p><strong>Order Date: </strong><%= order.created_at %></p>
+    <p><strong>Delivery Address:</p></strong>
+    <p><%= order.delivery_address.name %></p>
+    <p><%= order.delivery_address.address %></p>
+    <p>Phone number- <%= order.delivery_address.phone_number %></p>
+    <p>Email- <%= current_customer.email %></p>
+    <%= link_to 'Delete Order', [order.customer, order],
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<% else %>
+  <p>You don't have any order</p>
+<% end %>
+
+<%= link_to 'Go to products list', products_path %>

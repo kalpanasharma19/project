@@ -1,0 +1,23 @@
+<p>
+  <strong>Name:</strong>
+  <%= delivery_address.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= delivery_address.address %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= delivery_address.phone_number %>
+</p>
+
+<p>
+  <%= link_to 'Add to order', new_customer_order_path(customer_id: current_customer.id, delivery_address_id: delivery_address.id) %>
+</p>
+<p>
+  <%= link_to 'Delete Address', [delivery_address.customer, delivery_address],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

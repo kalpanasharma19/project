@@ -1,0 +1,17 @@
+<%= form_with(model: [ @customer, @customer.delivery_addresses.build ]) do |form| %>
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :Address %><br>
+    <%= form.text_area :address %>
+  </p>
+  <p>
+    <%= form.label :Phone_Number %><br>
+    <%= form.text_field :phone_number %>
+  </p>
+  <p>
+    <%= form.submit :Add %>
+  </p>
+<% end %>
