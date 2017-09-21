@@ -1,0 +1,10 @@
+/* line 6, /home/rails/Desktop/application/cart/app/assets/stylesheets/orders.scss */
+table th, table td {
+  text-align: left;
+  border: 1px solid black;
+}
+/* line 7, /home/rails/Desktop/application/cart/app/assets/stylesheets/orders.scss */
+table th {
+  background-color: black;
+  color: white;
+}

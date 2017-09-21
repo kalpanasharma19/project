@@ -1,8 +1,7 @@
 class ShoppingCartItemsController < ApplicationController
-  def show
-  end
+  before_action :shopping_cart_item
 
-  def new
+  def show
   end
 
   def create
@@ -26,21 +25,30 @@ class ShoppingCartItemsController < ApplicationController
   end
 
   def add_quantity
-    shopping_cart_item.increment(:quantity)
-    shopping_cart_item.save
-    render 'show'
+    @shopping_cart_item.increment(:quantity)
+    @shopping_cart_item.save
+    respond_to do |f|
+      f.html { redirect_to shopping_cart_items_show_path }
+      f.js
+    end
   end
 
   def reduce_quantity
     shopping_cart_item.decrement(:quantity) if shopping_cart_item.quantity > 1
     shopping_cart_item.save
-    render 'show'
+    respond_to do |f|
+      f.html { redirect_to shopping_cart_items_show_path }
+      f.js { redirect_to shopping_cart_items_show_path }
+    end
   end
 
   def destroy
     @item = current_customer.shopping_cart_items.find_by(id: params[:id])
     @item.destroy
-    render 'show'
+    respond_to do |f|
+      f.html { redirect_to shopping_cart_items_show_path }
+      f.js { redirect_to shopping_cart_items_show_path }
+    end
   end
 
   private

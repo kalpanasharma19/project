@@ -1,0 +1,9 @@
+/* line 6, /home/rails/Desktop/application/cart/app/assets/stylesheets/products.scss */
+table th {
+  text-align: left;
+}
+/* line 7, /home/rails/Desktop/application/cart/app/assets/stylesheets/products.scss */
+table th {
+  background-color: black;
+  color: white;
+}

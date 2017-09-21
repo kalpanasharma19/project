@@ -3,11 +3,8 @@ class DeliveryAddressesController < ApplicationController
 
   def create
     @delivery_address = current_customer.delivery_addresses.create(delivery_address_params)
-    if @delivery_address
-      redirect_to customer_path(current_customer)
-    else
-       @delivery_address.errors.full_messages
-    end
+    @delivery_address
+    redirect_to customer_path(current_customer)
   end
 
   def destroy

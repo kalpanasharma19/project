@@ -54,7 +54,7 @@ class CustomersController < ApplicationController
 
   def valid_customer
     return true if Customer.find_by(id: params[:id]) == current_customer
-    flash[:alert] = "You can edit your details only!"
+    flash[:alert] = "You can access your details only!"
     redirect_to customers_path
   end
 

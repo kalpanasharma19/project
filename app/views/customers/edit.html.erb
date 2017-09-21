@@ -1,16 +1,17 @@
-<font size ="4"><p align=right>
-  <%= link_to 'Home', welcome_index_path %></p>
-<body bgcolor="#99CCCC" text="#003399" vlink="#0066FF">
-
+<%= render "shared/header" %>
 <div class="Edit_Form">
-  <center><h1>Update Details</h1>
-  <%= form_with model: @customer do |f| %>
-    <p> Username:</br> <%= f.text_field :name%> </p>
-    <p> Email:</br> <%= f.text_field :email%> </p>
-    <p> Phone Number:</br> <%= f.text_field :phone_number%> </p>
-    <%= f.submit :Update %>
-  <% end %>
-</div></font>
+  <div class="container" style="width: 50%">
+    <div class="center-align">
+      <h3>Update Details</h3>
+      <%= form_with model: @customer do |f| %>
+        <p> Username:</br> <%= f.text_field :name%> </p>
+        <p> Email:</br> <%= f.text_field :email%> </p>
+        <p> Phone Number:</br> <%= f.text_field :phone_number%> </p>
+        <%= f.submit :Update %>
+      <% end %>
+    </div>
+  </div>
+</div>
  <%= render 'shared/errors', object: @customer %></center>
 
-<center><%= link_to 'Back', customer_path(current_customer.id) %></center>
+

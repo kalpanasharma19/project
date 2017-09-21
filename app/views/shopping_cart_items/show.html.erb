@@ -1,36 +1,16 @@
-<%= render 'products/header' %>
+<%= render 'shared/header' %>
 <% if current_customer.shopping_cart_items.any? %>
-  <% total = 0 %>
-  <% total_price = 0 %>
+<div>
   <% current_customer.shopping_cart_items.each do |item| %>
-    <p><strong>Product: </strong>
-    <%= item.product.name %></p>
-
-    <p><strong>Price: </strong>
-    <%= item.product.price %></p>
-
-    <% if item.product.stock_quantity > 0 %>
-      <p><strong>Quantity: </strong>
-      <%= item.quantity %>
-
-      <%= link_to "Increment", shopping_cart_item_add_path(id: item), method: :post  %>
-      <%= link_to "Decrement", shopping_cart_item_reduce_path(id: item), method: :post %></p>
-      <p><strong>Total Price: </strong><%= total_price = item.product.price * item.quantity %></p>
-    <% else %>
-      <p><strong>Out of Stock!! </strong></p>
-    <% end %>
-
-    <%= link_to 'Delete Item', [item.customer,item],
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></p>
-    <% total += total_price %>
+    <div id="shopping_cart_item_<%= item.id %>">
+      <%= render partial: 'shopping_cart_item', locals: { item: item } %>
+    </div>
   <% end %>
-  <p><strong>Total amount: </strong><%= total %></p>
+</div>
   <%= link_to 'Proceed to checkout', customer_path(current_customer) %>
 <% else %>
   <p> Your cart is empty! </p>
   <p> Add a Product.. </p>
 <% end %>
 
-<%= link_to 'Go to Product List', products_path %>
 

@@ -1,17 +1,36 @@
-<font size ="6"><p align=right>
-  <%= link_to 'Home', welcome_index_path %></p>
-<body bgcolor="#99CCCC" text="#003399" vlink="#0066FF">
-
+<div class="navbar-fixed">
+  <nav  class="teal darken-2">
+    <div class="nav-wrapper">
+      <a> © <%= Date.today.year %> </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul class="right hide-on-med-and-down">
+        <li><a href= "/customers/new">SignUp</a></li>
+        <li class="active"><a href= "new">Login</a></li>
+        <li><a href="/welcome/index">Home</a></li>
+      </ul>
+      </ul>
+    </div>
+  </nav>
+</div>
 
 <% @page_title = "UserAuth | Login" -%>
-<div class= "Sign_Form">
-  <center><h1>Log in</h1>
+<div class="container">
+  <h1>Log in</h1>
   <%= form_tag(:action => 'create') do %>
-    <p>Username:</br> <%= text_field_tag(:username) %></p>
-    <p>Password:</br> <%= password_field_tag :login_password %></p>
+    <div class="row">
+      <div class="input-field col s6" >
+        <p>Username:</br> <%= text_field_tag(:username) %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6" >
+        <p>Password:</br> <%= password_field_tag :login_password %></p>
+      </div>
+    </div>
     <p><%= submit_tag("Log In") %></p>
   <% end %>
+  <h5> First Time Visitor?...Please SignUp First</h5>
+</div>
 
-  <h6> First Time Visitor?...Please SignUp First</h6>
-  <%= link_to 'SignUp', new_customer_path %></center>
-</div></font>
+
+

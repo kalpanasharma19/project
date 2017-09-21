@@ -1,15 +1,12 @@
 <%= render 'shared/header' %>
-<h2>Total Orders : <%= current_customer.orders.count %></h2>
-<style>
-table, th, td {text-align: left; border: 1px solid black;}
-th { background-color: black; color: white; }
-</style>
-
+<h4>Total Orders : <%= current_customer.orders.count %></h4>
 <% if current_customer.orders.any? %>
   <% current_customer.orders.each do |order| %>
     <% total = 0 %>
+<style>
+</style>
 
-    <table style= "width:70%" >
+    <table class="highlight" style= "width:70%" >
       <tr>
         <th>Product</th>
         <th>Quantity</th>
@@ -18,7 +15,9 @@ th { background-color: black; color: white; }
       </tr>
       <% order.order_items.each do |order_item| %>
         <tr>
-          <td><%= order_item.product.name %></td>
+          <td><%= order_item.product.name %>
+              <%= link_to 'Show Details', product_path(order_item.product_id) %>
+          </td>
           <td><%= order_item.quantity%></td>
           <td><%= order_item.price %></td>
           <td><%= total_price = order_item.quantity * order_item.price %></td>
@@ -41,5 +40,3 @@ th { background-color: black; color: white; }
 <% else %>
   <p>You don't have any order</p>
 <% end %>
-
-<%= link_to 'Go to products list', products_path %>

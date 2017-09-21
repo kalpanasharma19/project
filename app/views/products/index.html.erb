@@ -1,19 +1,6 @@
 <%= render 'shared/header' %>
-
-
-<h2>List of Products</h2>
-<%= if is_admin?
-      link_to 'New product', new_product_path
-    end%>
-
-<style>
-table,th {text-align: left;}
-
-th { background-color: black; color: white; }
-
-</style>
-
-<table style= "width:70%" >
+<h3>List of Products</h3>
+<table class="highlight" style= "width:70%" >
   <tr>
     <th>Name</th>
     <th>Price</th>
@@ -28,7 +15,7 @@ th { background-color: black; color: white; }
       <td><%= link_to image_tag(product.image.url(:thumb)), product.image.url, target: '_blank' %></td>
 
       <td><% if product.stock_quantity > 0 %>
-                <%= link_to 'Add to Cart', shopping_cart_items_path(product_id: product.id), method: :post if current_customer %>
+                <%= link_to 'Add to Cart', shopping_cart_items_path(product_id: product.id), method: :post, remote: true if current_customer  %>
           <% else %>
                 <strong>Out of stock!!</strong>
           <% end %></td>
@@ -41,5 +28,5 @@ th { background-color: black; color: white; }
     </tr>
   <% end %>
 </table>
-<%= link_to 'Go to Customers Details', customers_path if is_admin? %>
+
 
