@@ -2,28 +2,28 @@
   <%= form_with model: @product, local: true  do |form| %>
   <div class="row">
     <div class="input-field col s12" >
-      <%= form.label :Product %><br>
+      <label class="black-text">Product</label><br>
       <%= form.text_field :name %>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s12" >
-      <%= form.label :Description %><br><br>
+      <label class="black-text">Description</label><br><br>
       <%= form.text_area :description %>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s6" >
-      <%= form.label :Price %><br>
+      <label class="black-text">Price</label><br>
       <%= form.text_field :price %>
     </div>
      <div class="input-field col s6" >
-      <%= form.label "Qunatity in stock" %><br>
+      <label class="black-text">Quantity in stock</label><br>
       <%= form.text_field :stock_quantity %>
     </div>
   </div>
   <div class="row">
-      <%= form.label :image %>
+      <label class="black-text">Image</label>
       <%= form.file_field :image%>
   </div>
   <div class="row">
@@ -31,7 +31,6 @@
   </div>
   <%= form.submit  %>
   <% end %>
-<%= render 'shared/errors', object: @product %>
 </div>
-
+<center class="red-text"><%= render 'shared/errors', object: @product %></center>
 

@@ -1,19 +1,19 @@
 <%= form_with(model: [ @customer, @customer.delivery_addresses.build ]) do |form| %>
   <div class="row">
     <div class="input-field col s6" >
-      <%= form.label :Name %><br>
+      <label class="black-text">Name</label><br>
       <%= form.text_field :name %>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s6" >
-      <%= form.label :Address %><br><br>
+      <label class="black-text">Address</label><br><br>
       <%= form.text_area :address %>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s6" >
-      <%= form.label :Phone_Number %><br>
+      <label class="black-text">Phone Number</label><br>
       <%= form.text_field :phone_number %>
     </div>
   </div>

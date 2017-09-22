@@ -8,7 +8,7 @@
   <p><strong>Quantity: </strong>
   <%= item.quantity %>
 
-  <%= link_to "Increment", shopping_cart_item_add_path(id: item), method: :post, remote: true, class: "add-quantity" %>
+  <%= link_to "Increment", shopping_cart_item_add_path(id: item), method: :post, remote: true, class: 'button-link' %>
   <%= link_to "Decrement", shopping_cart_item_reduce_path(id: item), method: :post, remote: true%></p>
   <p><strong>Total Price: </strong><%= total_price = item.product.price * item.quantity %></p>
 <% else %>

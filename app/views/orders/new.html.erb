@@ -1,44 +1,39 @@
+<%= render 'shared/header' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @delivery_address.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @delivery_address.address %>
-</p>
-
-<p>
-  <strong>Phone Number:</strong>
-  <%= @delivery_address.phone_number %>
-</p>
-
-
-<p><strong>Order Details: </strong></p>
+<h5><strong>Order Details: </strong></h5>
 <% if current_customer.shopping_cart_items.any? %>
   <% total = 0 %>
-  <% current_customer.shopping_cart_items.each do |item| %>
-    <p><strong>Product: </strong>
-    <%= item.product.name %></p>
-
-    <p><strong>Price: </strong>
-    <%= item.product.price %></p>
-
-    <p><strong>Quantity: </strong>
-    <%= item.quantity %>
-    <p><strong>Total Price: </strong><%= total_price = item.product.price * item.quantity %></p>
-    <% total += total_price %>
-  <% end %>
+  <table class="highlight" style= "width:70%" >
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total Price</th>
+    </tr>
+    <% current_customer.shopping_cart_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %>
+            <%= link_to 'Show Details', product_path(item.product_id) %>
+        </td>
+        <td><%= item.quantity%></td>
+        <td><%= item.product.price %></td>
+        <td><%= total_price = item.quantity * item.product.price %></td>
+        <% total += total_price %>
+      </tr>
+    <% end %>
+  </table>
   <p><strong>Total amount: </strong><%= total %></p>
 <% else %>
   <p> Your cart is empty! </p>
   <p> Add a Product.. </p>
 <% end %>
 
-<%= form_with(model: [current_customer, current_customer.orders.build]) do |f| %>
-  <%= f.hidden_field :delivery_address_id, value: @delivery_address.id%>
-  <%= f.submit 'Confirm Order' %>
+<% if current_customer.delivery_addresses.any? %>
+  <p class="red-text">Select one address for delivery or add a new address to your details</p>
+  <%= form_with(model: [current_customer, current_customer.orders.build]) do |f| %>
+    <%= f.collection_radio_buttons(:delivery_address_id, @delivery_addresses, :id, :address) %><br>
+    <%= f.submit 'Confirm Order' %>
+  <% end %>
+<% else %>
+  <p>Please add a delivery address..</p>
 <% end %>
-
-<%= link_to 'Go to products list', products_path %>

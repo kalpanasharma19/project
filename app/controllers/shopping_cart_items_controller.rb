@@ -1,5 +1,5 @@
 class ShoppingCartItemsController < ApplicationController
-  before_action :shopping_cart_item
+  before_action :shopping_cart_item, only: [:add_quantity, :reduce_quantity]
 
   def show
   end
@@ -34,11 +34,11 @@ class ShoppingCartItemsController < ApplicationController
   end
 
   def reduce_quantity
-    shopping_cart_item.decrement(:quantity) if shopping_cart_item.quantity > 1
-    shopping_cart_item.save
+    @shopping_cart_item.decrement(:quantity) if @shopping_cart_item.quantity > 1
+    @shopping_cart_item.save
     respond_to do |f|
       f.html { redirect_to shopping_cart_items_show_path }
-      f.js { redirect_to shopping_cart_items_show_path }
+      f.js
     end
   end
 
@@ -47,7 +47,7 @@ class ShoppingCartItemsController < ApplicationController
     @item.destroy
     respond_to do |f|
       f.html { redirect_to shopping_cart_items_show_path }
-      f.js { redirect_to shopping_cart_items_show_path }
+      f.js
     end
   end
 

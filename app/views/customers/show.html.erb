@@ -18,7 +18,6 @@
 
 <h5>Delivery Addresses:</h5>
 <%= render @customer.delivery_addresses %>
-
 <% if @customer == current_customer %>
   <h5> Add a delivery address: </h5>
   <%= render 'delivery_addresses/form' %>

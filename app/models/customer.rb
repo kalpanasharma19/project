@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   attr_accessor :password, :password_confirmation
+  default_scope { order(id: :asc) }
   enum role: { admin: true, customer: false }
 
   has_many :delivery_addresses, dependent: :destroy

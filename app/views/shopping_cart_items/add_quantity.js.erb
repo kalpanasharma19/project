@@ -1,2 +1,2 @@
-$(".shopping_cart_item_#{@shopping_cart_item.id}").html("<%= escape_javascript(render partial: 'shopping_cart_item', locals: { item: @shopping_cart_item }) %>");
+$("#<%= @shopping_cart_item.id %>").html("<%= escape_javascript(render partial: 'shopping_cart_item', locals: { item: @shopping_cart_item } ) %>");
 

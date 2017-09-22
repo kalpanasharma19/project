@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  default_scope { order(created_at: :desc) }
+
   belongs_to :customer
   belongs_to :delivery_address
   has_many :order_items, dependent: :destroy

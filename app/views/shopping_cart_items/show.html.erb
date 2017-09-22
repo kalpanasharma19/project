@@ -1,13 +1,13 @@
 <%= render 'shared/header' %>
 <% if current_customer.shopping_cart_items.any? %>
-<div>
+<div class="cart">
   <% current_customer.shopping_cart_items.each do |item| %>
-    <div id="shopping_cart_item_<%= item.id %>">
+    <div id="<%= item.id %>">
       <%= render partial: 'shopping_cart_item', locals: { item: item } %>
     </div>
   <% end %>
+  <%= link_to 'Proceed to checkout', new_customer_order_path(current_customer) %>
 </div>
-  <%= link_to 'Proceed to checkout', customer_path(current_customer) %>
 <% else %>
   <p> Your cart is empty! </p>
   <p> Add a Product.. </p>

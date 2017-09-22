@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @delivery_address = current_customer.delivery_addresses.find_by(id: params[:delivery_address_id])
+    @delivery_addresses = current_customer.delivery_addresses
   end
 
   def create
@@ -21,6 +21,8 @@ class OrdersController < ApplicationController
     if order.save
       flash[:success] = "Order confirmed!"
       redirect_to products_path
+    else
+      flash[:danger] = order.errors.full_masages
     end
   end
 
@@ -54,7 +56,7 @@ class OrdersController < ApplicationController
       @product = Product.find_by_id(item.product.id)
       if @product.stock_quantity < item.quantity
         flash[:notice] = "quantity exceeded!"
-        redirect_to products_path
+        redirect_to products_path and return
       end
     end
   end

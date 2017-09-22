@@ -1,0 +1,4 @@
+document.getElementById(<%= @shopping_cart_item.id %>).innerHTML ="<%= escape_javascript(render partial: 'shopping_cart_item', locals: { item: @shopping_cart_item } ) %>";
+
+// $("#shopping_cart_item").html("<%= escape_javascript(render partial: 'shopping_cart_item', locals: { item: @shopping_cart_item } ) %>");
+
