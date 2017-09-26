@@ -1,17 +1,3 @@
-<nav  class="teal darken-2">
-  <div class="nav-wrapper">
-    <a> © <%= Date.today.year %> </a>
-    <ul class="right hide-on-med-and-down">
-      <li><%= link_to 'SignUp', new_customer_path unless current_customer %></li>
-      <li><%= link_to 'Login', new_session_path unless current_customer %></li>
-      <li class="active"><a href="index">Home</a></li>
-      <li><%= link_to 'Logout', session_path(session[:customer_id]),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } if current_customer%></li>
-    </ul>
-  </div>
-</nav>
-
 <div class="center-align">
   <span class="green-text text-darken-3"><h2>Welcome!</h2></span>
   <h1 class="pink-text text-lighten-2"><I>My Shopping App</I></h1>

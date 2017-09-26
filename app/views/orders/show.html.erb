@@ -1,4 +1,3 @@
-<%= render 'shared/header' %>
 <h4>Total Orders : <%= current_customer.orders.count %></h4>
 <% if current_customer.orders.any? %>
   <% current_customer.orders.each do |order| %>

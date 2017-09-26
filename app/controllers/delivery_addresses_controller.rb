@@ -3,8 +3,10 @@ class DeliveryAddressesController < ApplicationController
 
   def create
     @delivery_address = current_customer.delivery_addresses.create(delivery_address_params)
+    flash[:alert] = @delivery_address.errors.full_messages
     redirect_to customer_path(current_customer)
   end
+
 
   def destroy
     @delivery_address = current_customer.delivery_addresses.find_by(id: params[:id])

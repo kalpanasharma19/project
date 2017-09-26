@@ -17,8 +17,10 @@ class ShoppingCartItemsController < ApplicationController
     end
 
     if @shopping_cart_item.save
-      flash[:success] = "Product added to cart."
-      redirect_to products_path
+      respond_to do |f|
+        f.html { redirect_to products_path }
+        f.json { render json: @shopping_cart_item }
+      end
     else
       flash[:alert] = "Error while adding"
     end
@@ -29,7 +31,7 @@ class ShoppingCartItemsController < ApplicationController
     @shopping_cart_item.save
     respond_to do |f|
       f.html { redirect_to shopping_cart_items_show_path }
-      f.js
+      f.json { render json: @shopping_cart_item }
     end
   end
 
@@ -38,22 +40,20 @@ class ShoppingCartItemsController < ApplicationController
     @shopping_cart_item.save
     respond_to do |f|
       f.html { redirect_to shopping_cart_items_show_path }
-      f.js
+      f.json { render json: @shopping_cart_item }
     end
   end
 
   def destroy
     @item = current_customer.shopping_cart_items.find_by(id: params[:id])
     @item.destroy
-    respond_to do |f|
-      f.html { redirect_to shopping_cart_items_show_path }
-      f.js
-    end
   end
 
   private
 
   def shopping_cart_item
-     @shopping_cart_item ||= ShoppingCartItem.find_by(id: params[:id])
+     @shopping_cart_item ||= ShoppingCartItem.joins(:product)
+                             .select("shopping_cart_items.*, products.price")
+                             .find_by(id: params[:id])
   end
 end

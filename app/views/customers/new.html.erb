@@ -1,17 +1,4 @@
-<div class="navbar-fixed">
-  <nav  class="teal darken-2">
-    <div class="nav-wrapper">
-      <a> © <%= Date.today.year %> </a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <ul class="right hide-on-med-and-down">
-        <li class="active"><a href= "new">SignUp</a></li>
-        <li><a href= "/sessions/new">Login</a></li>
-        <li><a href="/welcome/index">Home</a></li>
-      </ul>
-      </ul>
-    </div>
-  </nav>
-</div>
+<%= render 'shared/errors', object: @customer %>
 
 <div class="container">
     <h2>Sign Up</h2>
@@ -43,7 +30,6 @@
       </div>
       <%= f.submit :Signup %>
     <% end %>
-    <%= render 'shared/errors', object: @customer %>
   </div>
 </div>
 

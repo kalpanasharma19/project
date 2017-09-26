@@ -1,5 +1,3 @@
-<%= render 'shared/header' %>
-
 <h5><strong>Order Details: </strong></h5>
 <% if current_customer.shopping_cart_items.any? %>
   <% total = 0 %>
@@ -29,7 +27,7 @@
 <% end %>
 
 <% if current_customer.delivery_addresses.any? %>
-  <p class="red-text">Select one address for delivery or add a new address to your details</p>
+  <p class="green-text text-darken-4">Select one address for delivery or add a new address to your details</p>
   <%= form_with(model: [current_customer, current_customer.orders.build]) do |f| %>
     <%= f.collection_radio_buttons(:delivery_address_id, @delivery_addresses, :id, :address) %><br>
     <%= f.submit 'Confirm Order' %>

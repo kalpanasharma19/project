@@ -6,12 +6,13 @@
         <li><%= link_to 'Customers', customers_path if is_admin? %></li>
         <li><%= link_to 'New product', new_product_path if is_admin? %></li>
       </ul>
-      <a class="brand-logo center">Hello <%=current_customer.name if current_customer%>!!</a>
+      <li class="brand-logo center">Hello <%=current_customer.name if current_customer%>!!</li>
       <ul class="right hide-on-med-and-down">
         <li><%= link_to 'Home', welcome_index_path%></li>
         <li><%= link_to 'Your Details', customer_path(current_customer) if current_customer%></li>
         <li><%= link_to 'Cart', shopping_cart_items_show_path if current_customer%></li>
         <li><%= link_to 'Orders', orders_show_path if current_customer %></li>
+        <li><%= link_to 'SignUp', new_customer_path unless current_customer %></li>
         <li><%= link_to 'Login', new_session_path unless current_customer %></li>
         <li><%= link_to 'Logout', session_path(session[:customer_id]),
               method: :delete,

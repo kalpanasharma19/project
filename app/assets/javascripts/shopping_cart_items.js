@@ -1,7 +1,15 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-success: function(data, textStatus, xhr){
-$("#<%= @shopping_cart_item.id %>").html("<%= escape_javascript(render partial: 'shopping_cart_item', locals: { item: @shopping_cart_item } ) %>");
-}
+$( document ).ready(function() {
+  $( ".change_quantity" ).click(function(){
+      var action_path = $(this).attr('data_href');
+      $.ajax({
+        type: "POST",
+        url: action_path,
+        dataType: 'json',
+        success:function(data){
+          $("#quantity_"+data.id).text(data.quantity);
+          var total_price = data.price * data.quantity;
+          $("#price_"+data.id).text(total_price);
+        }
+      });
+    });
+});
