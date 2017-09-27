@@ -46,7 +46,14 @@ class ShoppingCartItemsController < ApplicationController
 
   def destroy
     @item = current_customer.shopping_cart_items.find_by(id: params[:id])
-    @item.destroy
+    if @item.destroy
+      respond_to do |f|
+        f.html { redirect_to shopping_cart_items_show_path }
+        f.json { render json: current_customer.shopping_cart_items.count }
+      end
+    else
+      flash[:alert] = "Error while removing..."
+    end
   end
 
   private

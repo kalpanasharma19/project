@@ -12,12 +12,14 @@
   <strong>Phone Number:</strong>
   <%= @customer.phone_number %>
 </p>
-<%= link_to 'Edit Your Details', edit_customer_path(@customer) if @customer == current_customer%>
+<%= link_to 'Edit Your Details', edit_customer_path(@customer), class: "edit_details" if @customer == current_customer%>
 
 <h5>Delivery Addresses:</h5>
 <%= render @customer.delivery_addresses %>
+
 <% if @customer == current_customer %>
   <h5> Add a delivery address: </h5>
   <%= render 'delivery_addresses/form' %>
 <% end %>
+
 

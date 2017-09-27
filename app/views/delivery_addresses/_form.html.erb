@@ -1,5 +1,6 @@
+<div id="address_form">
 <%= form_with(model: [ @customer, @customer.delivery_addresses.build ], local: true ) do |form| %>
-  <div class="row">
+   <div class="row">
     <div class="input-field col s6" >
       <label class="black-text">Name</label><br>
       <%= form.text_field :name %>
@@ -19,4 +20,23 @@
   </div>
   <%= form.submit :Add %>
 <% end %>
+</div>
 
+<script>
+
+$( ".submit_address" ).click(function(){
+    var customer_id =$(this).attr('customer_id');
+    var form_data = $("#address_form");
+    alert(form_data);
+    $.ajax({
+      type: "POST",
+      data: { form_data },
+      url: `/customers/${customer_id}/delivery_addresses`,
+      dataType: 'json',
+      success:function(data){
+
+      }
+    });
+  });
+
+</script>

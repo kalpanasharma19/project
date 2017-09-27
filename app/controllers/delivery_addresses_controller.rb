@@ -4,14 +4,23 @@ class DeliveryAddressesController < ApplicationController
   def create
     @delivery_address = current_customer.delivery_addresses.create(delivery_address_params)
     flash[:alert] = @delivery_address.errors.full_messages
-    redirect_to customer_path(current_customer)
+    respond_to do |f|
+        f.html { redirect_to customer_path(current_customer) }
+        f.json { render json: @delivery_address }
+      end
   end
 
 
   def destroy
     @delivery_address = current_customer.delivery_addresses.find_by(id: params[:id])
-    @delivery_address.destroy
-    redirect_to customer_path(current_customer)
+    if @delivery_address.destroy
+      respond_to do |f|
+        f.html { redirect_to customer_path(current_customer) }
+        f.json { render json: @delivery_address }
+      end
+    else
+      flash[:alert] = "Found error while removing..."
+    end
   end
 
   private

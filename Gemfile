@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'bcrypt', '~> 3.1.7'
  gem 'paperclip', '~> 4.2'
  gem 'materialize-sass'
- #gem 'sprockets-rails'
+#gem 'sprockets-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

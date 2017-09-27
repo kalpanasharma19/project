@@ -1,14 +1,16 @@
+
 <div class="Edit_Form">
   <div class="container" style="width: 50%">
     <div class="center-align">
       <%= render 'shared/errors', object: @customer %>
       <h3>Update Details</h3>
-      <%= form_with model: @customer, local: true do |f| %>
+      <div id="edit"><%= form_with model: @customer, local: true do |f| %>
         <p> Username:</br> <%= f.text_field :name%> </p>
         <p> Email:</br> <%= f.text_field :email%> </p>
         <p> Phone Number:</br> <%= f.text_field :phone_number%> </p>
-        <%= f.submit :Update %>
+        <%= f.submit :Update %></div>
       <% end %>
     </div>
   </div>
 </div>
+

@@ -13,7 +13,6 @@
 <% else %>
   <p><strong>Out of Stock!! </strong></p>
 <% end %>
-<%= link_to 'Delete Item', [item.customer, item],
-                method: :delete,
-                data: { confirm: 'Are you sure?' }, class: "destroy_item" %></p>
+<%= link_to 'Delete Item', "javascript:void(0)", customer_id: item.customer.id, item_id: item.id, class: "destroy_item" %>
+
 
